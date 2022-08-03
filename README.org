@@ -1,0 +1,24 @@
+#+TITLE: Alamacchi-lang
+#+AUTHOR: Res cogitans
+#+DATE: 01/01/1970
+
+almanacchi-lang mira a essere un linguaggio equivalente al [[https://esolangs.org/wiki/Brainfuck][Brainfuck]],
+nella categoria delle [[https://esolangs.org/wiki/Trivial_brainfuck_substitution][trivial brainfuck substitution]]
+
+I simboli del brainfuck sono sostituiti in almanacchi-lang secondo
+la seguente tabella
+
+| in brainfuck    | in almanacchi-lang |
+|-----------------+--------------------|
+| > (avanti)      | almanacchi         |
+| < (indietro)    | almanacchi!        |
+| + (più)         | nuovi              |
+| - (meno)        | nuovi!             |
+| [ (inizio loop) | lunari             |
+| ] (fine loop)   | lunari!            |
+| . (output)      | già                |
+| , (input)       | signore            |
+
+Causa l'incompetenza dell'autore al momento non è prevista
+l'implementazoine di un meccanismo per i commenti, se si desidera un
+meccanismo tale si è pregati di rivolgersi al brainfuck
