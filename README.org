@@ -2,9 +2,11 @@
 #+AUTHOR: Res cogitans
 #+DATE: 01/01/1970
 
+* Che sarebbe sta cosa?
 almanacchi-lang mira a essere un linguaggio equivalente al [[https://esolangs.org/wiki/Brainfuck][Brainfuck]],
 nella categoria delle [[https://esolangs.org/wiki/Trivial_brainfuck_substitution][trivial brainfuck substitution]]
 
+** Sintassi
 I simboli del brainfuck sono sostituiti in almanacchi-lang secondo
 la seguente tabella
 
@@ -19,6 +21,72 @@ la seguente tabella
 | . (output)      | già                |
 | , (input)       | signore            |
 
+Alamanacchi-lang è case insensitive, non considera gli spazii, e se ne
+fotte dell'estensione dei file, al fine di facilitarne la scrittura, i
+seguenti programmi sono quindi equivalenti
+
+=file.al=
+#+begin_src brainfuck
+  almanacacchi! almanacchi!
+#+end_src
+#+begin_src brainfuck
+  Almanacacchi! Almanacchi!
+#+end_src
+#+begin_src brainfuck
+  almanacacchi!almanacchi!
+#+end_src
+#+begin_src brainfuck
+  Almanacacchi!Almanacchi!
+#+end_src
+
+=file.bf=
+#+begin_src brainfuck
+  <<
+#+end_src
+
 Causa l'incompetenza dell'autore al momento non è prevista
 l'implementazoine di un meccanismo per i commenti, se si desidera un
 meccanismo tale si è pregati di rivolgersi al brainfuck
+
+* Installazione
+Visto che non so che computer ti ritrovi ho messo 4 file nella
+cartella =exe=.
+ - =alwin= file eseguibile almanacchi-lang compilato per windows
+ - =allin= file eseguibile almanacchi-lang compilato per linux
+ - =bfwin= file eseguibile brainfuck compilato per windows
+ - =bflin= file eseguibile brainfuck compilato per linux
+ - non ho idea di come creare un eseguibile per mac
+
+comunque per il momento c'è sempre il codice se vuoi compilarlo, tanto
+è solo un file.
+
+Prerequisiti
+ - un computer
+ - (se vuoi compilarlo) un compiler per il C (=gcc=, =msvc=, =clang=...)
+
+Essendo almanacchi-lang implementata con in un solo file =.c=
+l'installazione consiste nel
+ 1. scaricare il file
+ 2. compilarlo
+
+** Scaricare il file
+** Compilarlo
+
+* Utilizzo
+Per eseguire un file in almanacchi-lang si può:
+ - trascinare il file sorgente sull'eseguibile scelto, si aprirà una
+   finestra da cui vedere l'output del programma e dare input al
+   programma
+oppure
+ - aprire un terminale nella cartella dove hai compilato il file e
+   scrivere, ad esempio
+   #+begin_src shell
+     alwin file-almanacchi
+   #+end_src
+   o in generale
+   #+begin_src shell
+     <nome file eseguibile> <nome file sorgente>
+   #+end_src
+
+Uno di questi giorno magari darò la possibilità di dare un file come
+input al programma, al momento però l'input lo accetta solo da console.

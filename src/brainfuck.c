@@ -102,7 +102,11 @@ void run_as_brainfuck(char* codice) {
 	case '.':
 	    putchar(memoria[mem_ptr]);
 	    break;
-	    /* case ',': */
+	case ',':
+	    char c = ' ';
+	    scanf("%c",&c);
+	    memoria[mem_ptr] = c;
+	    break;
 	default:
 	    break;
 	}
@@ -145,10 +149,17 @@ int main(int argc, char** argv) {
     /* windows usa \r\n invece di \n per andare a capo
      * se li consideriamo come commenti senza farci
      * troppi problemi questo codice dovrebbe restare cross-platform */
-
+    if(argc <= 1) {
+	puts("Guarda, dovresti darmi un file");
+	return 1;
+    }
+	
     char* codice = file_as_string(argv[1]);
     printf("brainfucking:\n");
     run_as_brainfuck(codice);
+
+    /* aspetta input così non si chiude subito */
+    int inutile = getchar();
 
     return 0;
 }
