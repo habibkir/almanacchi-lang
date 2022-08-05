@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+/* TODO poi metti la roba per il teardown, se vuoi */
 
 /* per più informazioni sul brainfuck
  * https://esolangs.org/wiki/Brainfuck */
@@ -34,7 +35,7 @@ void avanti_pc(int* pc_ptr, char* codice) {
     int apertaggine = 1;
     int pc = *pc_ptr;
 
-    while(apertaggine) { /* apertaggine==0 -> abbiamo chiuso */
+    while(apertaggine) { /* apertaggine==0 -> abbiamo chiuso del tutto */
 	pc = (pc+1)%dimensione_codice;
 	if(codice[pc] == ']')
 	    apertaggine--;
@@ -49,7 +50,7 @@ void indietro_pc(int* pc_ptr, char*codice) {
     int chiusaggine = 1;
     int pc = *pc_ptr;
 
-    while(chiusaggine) { /* chiusaggine==0 -> abbiamo chiuso */
+    while(chiusaggine) { /* chiusaggine==0 -> apertura e chiusura bilanciati */
 	pc = (pc-1+dimensione_codice)%dimensione_codice;
 	if(codice[pc] == ']')
 	    chiusaggine++;
@@ -143,23 +144,19 @@ void run_as_brainfuck(char* codice) {
 }
 
 int main(int argc, char** argv) {
-    /* argc non ci interessa,
-     * argv[1] contiene la path al file da interpretare */
-
-    /* windows usa \r\n invece di \n per andare a capo
-     * se li consideriamo come commenti senza farci
-     * troppi problemi questo codice dovrebbe restare cross-platform */
+    /* se non dai argomenti è un problemino */
     if(argc <= 1) {
 	puts("Guarda, dovresti darmi un file");
 	return 1;
     }
 	
+    /* argv[1] contiene la path al file da interpretare */
     char* codice = file_as_string(argv[1]);
-    printf("brainfucking:\n");
+    printf("output di brainfuck:\n");
     run_as_brainfuck(codice);
 
-    /* aspetta input così non si chiude subito */
-    int inutile = getchar();
+    /* aspetta un input così la finestra non si chiude subito */
+    getchar();
 
     return 0;
 }
