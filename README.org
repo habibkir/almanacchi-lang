@@ -2,6 +2,8 @@
 #+AUTHOR: Res cogitans
 #+DATE: 01/01/1970
 
+(al momento non è molto funzionante, ci arriveremo)
+
 * Che sarebbe sta cosa?
 almanacchi-lang mira a essere un linguaggio equivalente al [[https://esolangs.org/wiki/Brainfuck][Brainfuck]],
 nella categoria delle [[https://esolangs.org/wiki/Trivial_brainfuck_substitution][trivial brainfuck substitution]]
@@ -10,39 +12,31 @@ nella categoria delle [[https://esolangs.org/wiki/Trivial_brainfuck_substitution
 I simboli del brainfuck sono sostituiti in almanacchi-lang secondo
 la seguente tabella
 
-| in brainfuck    | in almanacchi-lang |
-|-----------------+--------------------|
-| > (avanti)      | almanacchi         |
-| < (indietro)    | almanacchi!        |
-| + (più)         | nuovi              |
-| - (meno)        | nuovi!             |
-| [ (inizio loop) | lunari             |
-| ] (fine loop)   | lunari!            |
-| . (output)      | già                |
-| , (input)       | signore            |
+| in brainfuck    | in almanacchi-lang         |
+|-----------------+----------------------------|
+| > (avanti)      | almanacchi                 |
+| < (indietro)    | almanacchi!                |
+| + (più)         | nuovi                      |
+| - (meno)        | nuovi!                     |
+| [ (inizio loop) | lunari                     |
+| ] (fine loop)   | lunari!                    |
+| . (output)      | già (o gia, senza accento) |
+| , (input)       | signore                    |
 
-Alamanacchi-lang è case insensitive, non considera gli spazii, e se ne
-fotte dell'estensione dei file, al fine di facilitarne la scrittura, i
-seguenti programmi sono quindi equivalenti
+Causa il fatto che non so come far accettare caratteri unicode in c,
+per ora =.= sarà tradotto in =gia= invece che in =già=, già...
 
-=file.al=
+Alamanacchi-lang se ne fotte dell'estensione dei file, qualsiasi file
+tu dia al programma sarà trattato come un file almanacchi, al momento
+è case sensitive. quindi
 #+begin_src brainfuck
   almanacacchi! almanacchi!
 #+end_src
+è codice valido, ma
 #+begin_src brainfuck
   Almanacacchi! Almanacchi!
 #+end_src
-#+begin_src brainfuck
-  almanacacchi!almanacchi!
-#+end_src
-#+begin_src brainfuck
-  Almanacacchi!Almanacchi!
-#+end_src
-
-=file.bf=
-#+begin_src brainfuck
-  <<
-#+end_src
+non è codice valido.
 
 Causa l'incompetenza dell'autore al momento non è prevista
 l'implementazoine di un meccanismo per i commenti, se si desidera un
@@ -58,19 +52,58 @@ cartella =exe=.
  - non ho idea di come creare un eseguibile per mac
 
 comunque per il momento c'è sempre il codice se vuoi compilarlo, tanto
-è solo un file.
+è un solo file sorgente.
 
 Prerequisiti
- - un computer
+ - un computer, magari di quelli con una tastiera, non so quanto
+   funzionerà con un tablet.
  - (se vuoi compilarlo) un compiler per il C (=gcc=, =msvc=, =clang=...)
 
-Essendo almanacchi-lang implementata con in un solo file =.c=
-l'installazione consiste nel
- 1. scaricare il file
+** Scaricare l'eseguibile
+se vuoi solo l'eseguibile i passaggi da fare sono
+ 1. Scaricar
+
+*** Scaricarlo
+è nella cartella exe, fai click sinistro->salva file, classico
+se hai git installato nel computer puoi anche fare
+#+begin_src bash
+  git clone https://github.com/stipid-code/almanacchi-lang.git
+#+end_src
+e ti scarica tutta sta cartella, un po' eccessivo ma se vuoi puoi farlo
+
+** Compilare il file sorgente
+se vuoi compilarlo devi
+ 1. scaricare il file sorgente
  2. compilarlo
 
-** Scaricare il file
-** Compilarlo
+*** Scaricare il file sorgente
+vedi sopra come scaricare l'eseguibile (poi vedi come fare un hyperlink allo
+stesso file in org mode) 
+
+*** Compilarlo
+apri un terminale nella cartella col file c e scrivi, ad esempio
+#+begin_src bash
+  gcc almanacchi.c
+#+end_src
+o, in generale
+#+begin_src bash
+  <nome del compiler> <file sorgente>
+#+end_src
+se vuoi che l'eseguibile abbia un nome meno orrendo (di default si
+chiama =a.exe= o =a.out=)
+#+begin_src bash
+  <nome del compiler> -o nome_figo_per_file_eseguibile <file.c>
+#+end_src
+mettere spazi nel nome del nome di un file da terminale è strano, o
+fai
+#+begin_src bash
+  nome\ con\ spazi
+#+end_src
+o
+#+begin_src bash
+  'nome con spazi'
+#+end_src
+fai direttamente un nome senza spazi
 
 * Utilizzo
 Per eseguire un file in almanacchi-lang si può:
@@ -81,12 +114,20 @@ oppure
  - aprire un terminale nella cartella dove hai compilato il file e
    scrivere, ad esempio
    #+begin_src shell
-     alwin file-almanacchi
+     .\alwin file-almanacchi
    #+end_src
    o in generale
    #+begin_src shell
-     <nome file eseguibile> <nome file sorgente>
+     .\<nome file eseguibile> <nome file sorgente>
    #+end_src
+   per windows e 
+   #+begin_src shell
+     ./<nome file eseguibile> <nome file sorgente>
+   #+end_src
+   per linux o macOs (i computer sono strani)
 
-Uno di questi giorno magari darò la possibilità di dare un file come
-input al programma, al momento però l'input lo accetta solo da console.
+* Magari uno di sti giorni   
+ - Aggiugo un parsing leggermente più generico
+ - Riscrivo certe sezioni di merda in modo che siamo un po' meno di merda
+ - Do l'opzione di far leggere un file come input al programma
+   eseguito invece di accettare input solo dalla console

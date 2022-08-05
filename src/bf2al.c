@@ -1,4 +1,8 @@
 #include<stdio.h>
+/* ci sono molti programmi in brainfuck disponibili su wiki e internet
+ * et al. visto che non so scrivere cose del genere da me ho fatto sto
+ * cosino per tradurre quei programmi in almanacchi e avere qualcosa con
+ * cui testare il funzionamento di questo mostro che ho creato */
 
 #define STRING_WAS_EMPTY (1)
 
